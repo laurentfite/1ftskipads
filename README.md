@@ -1,14 +1,14 @@
-# 1ft ad skipper
-Don't want to watch those annoying ads? **Skip'em**.
+# TF1 adblock
+Profitez de votre replay sans pub !
 
-## How to
+## Comment faire
 
-- 🎬 Go to the video you want to watch
-- 💻 Open the Inspector (`Ctrl + Shift + I` on _Google Chrome_ on _Windows_)
-- 👾 Run the script in the console
-- ⚡ The ads will all be skipped until you get to what you wanted to watch
-- 🍿 Enjoy
+📥 Installer l'[Extension Chrome](https://chrome.google.com/webstore/detail/gcljghblepcfkdcldkelpnnbmhjnkdan)
 
-or
+ou, si vous voulez faire sans extension
 
-- 📥 Install the [Chrome Extension](https://chrome.google.com/webstore/category/extensions)
+- 🎬 Une fois sur la vidéo qui vous intéresse
+- 💻 Ouvrir l'inspecteur (`Ctrl + Maj + I` sur _Google Chrome_ sur _Windows_)
+- 👾 Copier/coller le script présent dans `script.js`
+- ⚡ Les pubs vont se "zapper" jusqu'à la vidéo qui vous intéresse
+- 🍿 Profitez
