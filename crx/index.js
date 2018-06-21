@@ -12,35 +12,26 @@ const style = {
   display: 'none',
   alignItems: 'center',
   justifyContent: 'center',
-  fontSize: '300%'
+  fontSize: '300%',
+  display: 'flex'
 }
 Object.assign(div.style,style);
-div.innerHTML = "Profitez de votre replay sans pub 🍿"
+div.innerHTML = 'Profitez de votre replay sans pub 🍿'
 
-const skipCurrentVideo = (v) => {
-  v.currentTime = v.duration
-}
+const NB_CHECKS = 3
 
-let v
-setTimeout(() => {
-  const skippingInterval = setInterval(() => {
+let v, cpt = NB_CHECKS
+addEventListener('load', () => {
+  document.getElementById('zonePlayer').appendChild(div)
+  const i = setInterval(() => {
     v = document.querySelector('[id^="videoElement_"]')
-
-    // 🔥 It's an ad, burn it
-    if (v && v.duration < 40.0) {
-      // Display the layer
-      let z = document.getElementById('zonePlayer')
-      if (div.style.display === 'none') {
-        div.style.display = 'flex'
-        z.appendChild(div)
-      }
+    if (!document.getElementsByClassName('ads__timer')[0].hidden) { // 🔥 It's an ad, burn it
+      cpt = NB_CHECKS
       // Skip the video
-      if (!document.getElementsByClassName('ads__timer')[0].hidden) {
-        skipCurrentVideo(v)
-      }
-    } else if (v && !isNaN(v.duration)) { // 🍿 Grab some popcorn, it's on
-      clearInterval(skippingInterval)
+      v.currentTime = v.duration
+    } else if (!cpt--) { // 🍿 Grab some popcorn, it's on
       div.style.display = 'none'
+      clearInterval(i)
     }
-  }, 1000)
-}, 1000)
+  }, 500)
+})
