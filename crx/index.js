@@ -9,7 +9,6 @@ const style = {
   top: '0px',
   left: '0px',
   zIndex: '99999999999999',
-  display: 'none',
   alignItems: 'center',
   justifyContent: 'center',
   fontSize: '300%',
