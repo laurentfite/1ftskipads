@@ -1,8 +1,14 @@
 {
-  "manifest_version": 3,
+  "manifest_version": 2,
   "name": "TF1 AdBlock",
-  "description": "Profitez de votre replay sans pub 🍿",
   "version": "3.0.0",
+  "description": "Profitez de votre replay sans pub 🍿",
+  "icons": {
+     "16": "images/icon.png",
+     "32": "images/icon.png",
+     "48": "images/icon.png",
+     "128": "images/icon.png"
+  },
   "browser_action": {
     "default_icon": "images/icon.png",
     "default_popup": "popup.html"
@@ -13,11 +19,5 @@
       "js": ["index.js"],
       "all_frames": true
     }
-  ],
-  "icons": {
-     "16": "images/icon.png",
-     "32": "images/icon.png",
-     "48": "images/icon.png",
-     "128": "images/icon.png"
-   }
+  ]
 }
