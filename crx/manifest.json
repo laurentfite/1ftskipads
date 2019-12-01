@@ -1,16 +1,17 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "TF1 AdBlock",
   "description": "Profitez de votre replay sans pub 🍿",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "browser_action": {
     "default_icon": "images/icon.png",
     "default_popup": "popup.html"
   },
   "content_scripts": [
     {
-      "matches": ["https://www.tf1.fr/*"],
-      "js": ["index.js"]
+      "matches": ["https://prod-player.tf1.fr/*"],
+      "js": ["index.js"],
+      "all_frames": true
     }
   ],
   "icons": {
