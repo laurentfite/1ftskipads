@@ -1,39 +1,45 @@
-const div = document.createElement("div")
-div.style.width = "100%"
-div.style.height = "100%"
-div.style.background = "rgba(0,0,0,0.95)"
-div.style.color = "white"
-div.style.position = "absolute"
-div.style.top = "0px"
-div.style.left = "0px"
-div.style.zIndex = "99999999999999"
-div.style.display = "none"
-div.style.alignItems = "center"
-div.style.justifyContent = "center"
-div.style.fontSize = "200%"
-div.style.flexDirection = "column"
+const div = document.createElement('div')
+Object.assign(div.style, {
+  width: '100%',
+  height: '100%',
+  background: '#000e',
+  color: 'white',
+  position: 'absolute',
+  top: '0px',
+  left: '0px',
+  zIndex: Number.MAX_SAFE_INTEGER,
+  alignItems: 'center',
+  justifyContent: 'center',
+  fontSize: '200%',
+  display: 'flex',
+  flexDirection: 'column',
+})
 
-let timeSkipped = 0
 
+let z,
+  layered = false,
+  timeSkipped = 0
 setInterval(() => {
-  try {
-    let z = document.getElementById('adContainer')
-    if (!z) return
-    Array.from(z.getElementsByTagName('video')).forEach(ad => {
+  z = document.getElementById('adContainer')
+  if (!z) return
+  // Display the layer
+  if (!layered) {
+    z.appendChild(div)
+    layered = true
+  }
+  // Multiple video elements may be spawned depending on the ad provider
+  // ...I think
+  Array.from(z.getElementsByTagName('video')).forEach(ad => {
+    ad.muted = true
+    // Ignore videos < 2s because they're probably the "loading" video and
+    // they're most likely not ads anyway
+    if (ad.duration > 2) {
       // Skip the video
-      if (ad.duration) {
-        ad.currentTime = ad.duration
-        ad.muted = true
-        div.innerHTML = `
-          <p>Profitez de votre replay sans pub 🍿</p>
-          <p>Temps de cerveau sauvé : ${0 | (timeSkipped += ad.duration)}s</p>
-        `
-      }
-    })
-    // Display the layer
-    if (div.style.display === 'none') {
-      div.style.display = 'flex'
-      z.appendChild(div)
+      ad.currentTime = ad.duration
+      div.innerHTML = `
+        <p>Profitez de votre replay sans pub 🍿</p>
+        <p>Temps de cerveau sauvé : ${0 | (timeSkipped += ad.duration)}s</p>
+      `
     }
-  } catch (err) {}
+  })
 }, 1000)
